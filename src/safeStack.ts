@@ -12,6 +12,7 @@ export type TSafeStack<T> = {
 }
 
 export type SafeStackOptions<T> = {
+    // TODO: only positive integers type?
     capacity: number;
     initialValues: T[];
 }
@@ -29,6 +30,7 @@ function buildDefaultOptions<T>(): SafeStackOptions<T> {
 
 /**
  * Safe stack implementation.
+ * @throws {TypeError} if the capacity option is not a positive whole number.
  */
 export class SafeStack<T> implements TSafeStack<T> {
     private readonly arr: T[];
@@ -121,6 +123,7 @@ export class SafeStack<T> implements TSafeStack<T> {
  * Create a stack.
  * @param setOptions - function to override the default stack options.
  * @returns - the stack.
+ * @throws {TypeError} if the capacity option is not a positive whole number.
  */
 export function createStack<T>(setOptions?: (options: SafeStackOptions<T>) => void): SafeStack<T> {
     return new SafeStack(setOptions);
