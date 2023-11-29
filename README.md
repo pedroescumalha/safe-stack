@@ -31,7 +31,6 @@ const stringStack = createStack<string>();
 ### Options
 
 ```typescript
-// Create a stack of numbers
 const numberStack = createStack<number>((options) => {
     options.capacity = 50;
     options.initialValues = [1, 2];
@@ -39,7 +38,7 @@ const numberStack = createStack<number>((options) => {
 ```
 
 When creating a stack, there's two options that can be set:
-- `capacity`: The maximum value of elements the stack can hold. A `TypeError` will be thrown if this value is not a whole positive integer. The default value is `Number.MAX_VALUE`;
+- `capacity`: The maximum value of elements the stack can hold. A `TypeError` will be thrown if this value is not a whole positive integer. The default value is `Number.MAX_VALUE`.
 - `initialValues`: Initialize a new stack with a copy of the values specified in this field. The default value is `[]`.
 
 ### Available operations
