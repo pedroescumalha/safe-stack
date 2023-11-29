@@ -3,7 +3,7 @@
  */
 export type TSafeStack<T> = {
     peek: () => T | undefined;
-    push: (item: T) => undefined;
+    push: (item: T) => void;
     includes: (item: T) => boolean;
     pop: () => T | undefined;
     clear: () => void;
@@ -41,7 +41,7 @@ export class SafeStack<T> implements TSafeStack<T> {
             setOptions(options);
 
             if (options.capacity <= 0 || options.capacity % 1 !== 0) {
-                throw new Error(
+                throw new TypeError(
                     "Invalid value for capacity. Capacity must be a whole number higher than 0."
                 );
             }

@@ -11,6 +11,8 @@ describe(createStack.name, () => {
                 createStack<number>((o) => {
                     o.capacity = -2;
                 });
+            }, {
+                name: TypeError.name,
             });
         });
 
@@ -19,6 +21,8 @@ describe(createStack.name, () => {
                 createStack<number>((o) => {
                     o.capacity = 3.5;
                 });
+            }, {
+                name: TypeError.name,
             });
         });
     });
@@ -65,6 +69,8 @@ describe(createStack.name, () => {
 
             assert.throws(() => {
                 stack.push(1);
+            }, {
+                name: RangeError.name,
             });
         });
     });
