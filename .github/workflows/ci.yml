@@ -5,12 +5,14 @@ on:
     branches: [ "main" ]
 
 jobs:
-  strategy:
-    matrix:
-      node-version: ['16.x', '18.x', '20.x']
 
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ['16.x', '18.x', '20.x']
+
     steps:
     - name: Check out repository
       uses: actions/checkout@v3
