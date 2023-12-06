@@ -1,8 +1,28 @@
 {
   "name": "safe-stack",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
+  "description": "Typesafe stack data structure",
+  "author": "Pedro Escumalha",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pedroescumalha/safe-stack"
+  },
+  "types": "./dist/types/safeStack.d.ts",
+  "main": "./dist/cjs/safeStack.js",
+  "module": "./dist/esm/safeStack.mjs",
+  "homepage": "https://github.com/pedroescumalha/safe-stack",
+  "bugs": "https://github.com/pedroescumalha/safe-stack/issues",
+  "keywords": [
+    "stack",
+    "typescript",
+    "typesafe",
+    "dataStructure",
+    "data_structure",
+    "data-structure",
+    "type",
+    "safety"
+  ],
   "devDependencies": {
     "@types/node": "^20.10.0",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
@@ -11,15 +31,34 @@
     "eslint-plugin-jsdoc": "^46.9.0",
     "globstar": "^1.0.0",
     "nodemon": "^3.0.1",
+    "renamer": "^4.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.2"
   },
   "scripts": {
-    "start": "node dist/index.js",
-    "build": "tsc",
+    "build": "rm -rf dist/* && yarn build:cjs && yarn build:esm && yarn build:types",
+    "build:esm": "tsc -p ./tsconfig.esm.json && renamer --find '/.js/i' --replace '.mjs' ./dist/esm/*",
+    "build:cjs": "tsc -p ./tsconfig.cjs.json",
+    "build:types": "tsc -p ./tsconfig.types.json",
     "dev": "nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --ignore 'src/**/*.test.ts' --exec 'ts-node src/index.ts'",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "test": "globstar -- node --test --require ts-node/register ./src/**/*.test.ts"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/safeStack.js",
+      "import": "./dist/mjs/safeStack.mjs",
+      "types": "./dist/types/safeStack.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }
