@@ -48,7 +48,7 @@
   "exports": {
     ".": {
       "require": "./dist/cjs/safeStack.js",
-      "import": "./dist/mjs/safeStack.mjs",
+      "import": "./dist/esm/safeStack.mjs",
       "types": "./dist/types/safeStack.d.ts"
     },
     "./package.json": "./package.json"
