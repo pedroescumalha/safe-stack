@@ -36,7 +36,7 @@
     "typescript": "^5.3.2"
   },
   "scripts": {
-    "build": "tsup src/*.ts --format esm,cjs --dts -d=./dist",
+    "build": "rm -rf dist/* && tsup src/*.ts --format esm,cjs --dts --sourcemap -d=./dist",
     "dev": "nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --ignore 'src/**/*.test.ts' --exec 'ts-node src/index.ts'",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
