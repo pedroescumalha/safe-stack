@@ -8,9 +8,9 @@
     "type": "git",
     "url": "https://github.com/pedroescumalha/safe-stack"
   },
-  "types": "./dist/types/safeStack.d.ts",
-  "main": "./dist/cjs/safeStack.js",
-  "module": "./dist/esm/safeStack.mjs",
+  "types": "./dist/safeStack.d.ts",
+  "main": "./dist/safeStack.js",
+  "module": "./dist/safeStack.mjs",
   "homepage": "https://github.com/pedroescumalha/safe-stack",
   "bugs": "https://github.com/pedroescumalha/safe-stack/issues",
   "keywords": [
@@ -44,9 +44,9 @@
   },
   "exports": {
     ".": {
-      "require": "./dist/cjs/safeStack.js",
-      "import": "./dist/esm/safeStack.mjs",
-      "types": "./dist/types/safeStack.d.ts"
+      "require": "./dist/safeStack.js",
+      "import": "./dist/safeStack.mjs",
+      "types": "./dist/safeStack.d.ts"
     },
     "./package.json": "./package.json"
   },
