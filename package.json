@@ -1,6 +1,6 @@
 {
   "name": "safe-stack",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "Typesafe stack data structure",
   "author": "Pedro Escumalha",
