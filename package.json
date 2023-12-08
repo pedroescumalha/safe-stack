@@ -1,8 +1,28 @@
 {
   "name": "safe-stack",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
+  "description": "Typesafe stack data structure",
+  "author": "Pedro Escumalha",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedroescumalha/safe-stack.git"
+  },
+  "types": "./dist/safeStack.d.ts",
+  "main": "./dist/safeStack.js",
+  "module": "./dist/safeStack.mjs",
+  "homepage": "https://github.com/pedroescumalha/safe-stack",
+  "bugs": "https://github.com/pedroescumalha/safe-stack/issues",
+  "keywords": [
+    "stack",
+    "typescript",
+    "typesafe",
+    "dataStructure",
+    "data_structure",
+    "data-structure",
+    "type",
+    "safety"
+  ],
   "devDependencies": {
     "@types/node": "^20.10.3",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
@@ -12,14 +32,30 @@
     "globstar": "^1.0.0",
     "nodemon": "^3.0.2",
     "ts-node": "^10.9.1",
+    "tsup": "^8.0.1",
     "typescript": "^5.3.2"
   },
   "scripts": {
-    "start": "node dist/index.js",
-    "build": "tsc",
+    "build": "rm -rf dist/* && tsup src/*.ts --format esm,cjs --dts --sourcemap -d=./dist && rm -rf dist/*.test.*",
     "dev": "nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --ignore 'src/**/*.test.ts' --exec 'ts-node src/index.ts'",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "test": "globstar -- node --test --require ts-node/register ./src/**/*.test.ts"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/safeStack.js",
+      "import": "./dist/safeStack.mjs",
+      "types": "./dist/safeStack.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }
