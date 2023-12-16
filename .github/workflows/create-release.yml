@@ -6,7 +6,7 @@ on:
       - '[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
-  build:
+  create-release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -24,6 +24,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: yarn
       - run: yarn build
-      - run: yarn npm publish
+      - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
