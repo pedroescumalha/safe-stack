@@ -21,14 +21,11 @@ jobs:
       - uses: actions/create-release@v2.0.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            tag_name: ${{ github.ref }}
-            release_name: Release ${{ github.ref }}
-            body: ${{steps.build-changelog.outputs.changelog}}
-      - First Change
-      - Second Change
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: ${{steps.build-changelog.outputs.changelog}}
 
-        # publish-npm:
         #   runs-on: ubuntu-latest
         #   steps:
         #     - uses: actions/checkout@v4
