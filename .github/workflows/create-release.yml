@@ -3,27 +3,39 @@ name: Release
 on:
   push:
     tags:
-      - '[0-9]+.[0-9]+.[0-9]+*'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
+  build-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mikepenz/release-changelog-builder-action@v4.1.0
+        with:
+          fetchViaCommits: true
+          fetchReviewers: true
+
   create-release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-    - uses: actions/checkout@v3
-    - uses: ncipollo/release-action@v1
 
-  publish-npm:
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: softprops/action-gh-release@v1
         with:
-          node-version: '20.x'
-          registry-url: 'https://registry.npmjs.org'
-      - run: yarn
-      - run: yarn build
-      - run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ github.ref }}
+          name: Release ${{ github.ref }}
+          generate_release_notes: true
+            # body: ${{steps.build-changelog.outputs.changelog}}
+
+        #   runs-on: ubuntu-latest
+        #   steps:
+        #     - uses: actions/checkout@v4
+        #     - uses: actions/setup-node@v3
+        #       with:
+        #         node-version: '20.x'
+        #         registry-url: 'https://registry.npmjs.org'
+        #     - run: yarn
+        #     - run: yarn build
+        #     - run: yarn publish
+        #       env:
+        #         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
