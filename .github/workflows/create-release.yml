@@ -9,14 +9,6 @@ permissions:
   contents: write
 
 jobs:
-  build-changelog:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: mikepenz/release-changelog-builder-action@v4.1.0
-        with:
-          fetchViaCommits: true
-          fetchReviewers: true
-
   create-release:
     runs-on: ubuntu-latest
     steps:
@@ -28,7 +20,6 @@ jobs:
           tag: ${{ github.ref }}
           name: Release ${{ github.ref_name }}
           generateReleaseNotes: true
-            # body: ${{steps.build-changelog.outputs.changelog}}
 
         # publish-npm:
         #   runs-on: ubuntu-latest
